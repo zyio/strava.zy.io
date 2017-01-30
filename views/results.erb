@@ -1,0 +1,45 @@
+<!-- https://datatables.net/examples/styling/bootstrap.html -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">
+    <script type="text/javascript" language="javascript" src="//code.jquery.com/jquery-1.12.4.js"></script>
+  	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+  	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
+
+  	<script type="text/javascript" class="init">
+
+  $(document).ready(function() {
+    $('#example').DataTable( {
+        "paging":   false,
+    } );
+} );
+
+  	</script>
+
+<div class="jumbotron">
+    <h1>Results</h1>
+<table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Distance (km)</th>
+                <th>Time (mins)</th>
+                <th>Average Speed (km/h)</th>
+                <th>Pace</th>
+            </tr>
+        </thead>
+        <tbody>
+  <% @results.each do |activity| %>
+    <tr>
+      <th><%= activity['name'] %></th>
+      <th><%= activity['type'] %></th>
+      <th><%= Date.parse(activity['start_date']).strftime "%d/%m/%Y" %></th>
+      <td><%= (activity['distance']/1000).round(2) %>
+      <td><%= Time.at(activity['elapsed_time']).strftime "%M:%S"  %></td>
+      <td><%= (3.6 * activity['average_speed']).round(2)  %></td>
+      <td><%= ((activity['elapsed_time']/60)/(activity['distance']/1000)).round(2) %></td>
+    </tr>
+  <% end %>
+  </tbody
+</table>
+</div>
