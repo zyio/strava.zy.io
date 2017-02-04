@@ -31,13 +31,13 @@
         <tbody>
   <% @results.each do |activity| %>
     <tr>
-      <th><%= activity['name'] %></th>
+      <th><a href="https://www.strava.com/activities/<%= activity['id'] %>"><%= activity['name'] %></a></th>
       <th><%= activity['type'] %></th>
       <th><%= Date.parse(activity['start_date']).strftime "%d/%m/%Y" %></th>
       <td><%= (activity['distance']/1000).round(2) %>
-      <td><%= Time.at(activity['elapsed_time']).strftime "%M:%S"  %></td>
+      <td><%= Time.at(activity['moving_time']).strftime "%M:%S"  %></td>
       <td><%= (3.6 * activity['average_speed']).round(2)  %></td>
-      <td><%= ((activity['elapsed_time']/60)/(activity['distance']/1000)).round(2) %></td>
+      <td><%= ((activity['moving_time']/60)/(activity['distance']/1000)).round(2) %></td>
     </tr>
   <% end %>
   </tbody

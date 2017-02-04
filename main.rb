@@ -29,7 +29,16 @@ post '/results' do
     break if nastybreak == "break"
   end
 
-  @results = results.flatten.uniq
+  case params['runrideradio']
+  when "run"
+    results.delete_if{ |activity| activity['type'] != "Run"}
+    @results = results.flatten.uniq
+  when "ride"
+    results.delete_if{ |activity| activity['type'] != "Ride"}
+    @results = results.flatten.uniq
+  when "both"
+    @results = results.flatten.uniq
+  end
 
   erb :results
 end
