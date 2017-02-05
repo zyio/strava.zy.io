@@ -29,10 +29,25 @@
         totals['avgpace'] << ((activity['moving_time']/60)/(activity['distance']/1000))
       end
      %>
-    <h3>Total distance covered = <%= (totals['distance']/1000).round(2) %> km</h3>
-    <h3>Total time = <%= Time.at(totals['time']).strftime "%H:%M:%S" %></h3>
-    <h3>Average speed = <%= ((totals['avgspeed'].inject(:+).to_f)/(totals['avgspeed'].length)).round(2)  %> km/h</h3>
-    <h3>Average pace = <%= ((totals['avgpace'].inject(:+).to_f)/(totals['avgpace'].length)).round(2) %> min per km</h3>
+
+    <div class="row placeholders">
+      <div class="col-xs-6 col-sm-3 placeholder">
+        <h3><%= (totals['distance']/1000).round(2) %> km</h3>
+        <span class="text-muted">Total Distance Covered</span>
+      </div>
+      <div class="col-xs-6 col-sm-3 placeholder">
+        <h3><%= totals['time']/60 %> mins</h3>
+        <span class="text-muted">Total Time</span>
+      </div>
+      <div class="col-xs-6 col-sm-3 placeholder">
+        <h3><%= ((totals['avgspeed'].inject(:+).to_f)/(totals['avgspeed'].length)).round(2)  %> km/h</h3>
+        <span class="text-muted">Average Speed</span>
+      </div>
+      <div class="col-xs-6 col-sm-3 placeholder">
+        <h3><%= ((totals['avgpace'].inject(:+).to_f)/(totals['avgpace'].length)).round(2) %> min/km</h3>
+        <span class="text-muted">Average Pace</span>
+      </div>
+    </div>
 
   <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
           <thead>
