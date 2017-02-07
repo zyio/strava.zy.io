@@ -24,9 +24,11 @@
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
+<% if session[:access_token] != nil %>
+            <li role="presentation"><a href="/sign_out">Sign Out</a></li>
+<%end%>
             <li role="presentation" class="active"><a href="https://strava.zy.io">Home</a></li>
-            <!--<li role="presentation"><a href="#">About</a></li>
-            <li role="presentation"><a href="#">Contact</a></li>-->
+            <!--<li role="presentation"><a href="#">Contact</a></li>-->
           </ul>
         </nav>
         <h3 class="text-muted">Strava thing</h3>

@@ -6,18 +6,12 @@
 
 
 <div class="jumbotron">
-    <h1>Strava thing!</h1>
-<p>
-Hacky at the moment.<p>
-Haven't got any account syncing, so you'll need to go <a href="https://www.strava.com/settings/api">here</a> and create an application.<p>
-Paste your (public) 'client access token' in the box, choose a date range and hit go.<p>
-</p>
+
+<% if session[:access_token] != nil %>
+
+<h2>Choose some options!</h2>
 
 <form action='results' method='post'>
-  <div class="form-group">
-    <label for="access_token_input">Access Token</label>
-    <input type="text" id="access_token_input"  name="access_token"  />
-  </div>
 
   <div class="form-group">
     <label for="daterangepicker">Date Range</label>
@@ -64,5 +58,14 @@ Paste your (public) 'client access token' in the box, choose a date range and hi
   <button type='submit' class='btn btn-primary'>Go!</button>
 
 </form>
+<% else %>
+    <h1>Strava thing!</h1>
 
+<form action='results' method='post'>
+  <div class="form-group">
+    <a class="btn btn-large btn-info" href="/sign_in">Log in with Strava</a>
+  </div>
+</form>
+
+<% end %>
 </div>
